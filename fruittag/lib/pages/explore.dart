@@ -49,6 +49,17 @@ class ExplorePage extends StatelessWidget {
           height: 30,
           width: 30,
         ),
+        Image.asset(
+          "assets/profbg.jpg",
+          fit: BoxFit.cover,
+          height: 30,
+          width: 30,
+        ),
+        Image.asset(
+          "assets/prof.jpg",
+          height: 30,
+          width: 30,
+        ),
       ],
     );
   }

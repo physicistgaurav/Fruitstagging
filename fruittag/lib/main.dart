@@ -4,7 +4,7 @@ import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:fruittag/drawer.dart';
-import 'package:fruittag/pages/favourite.dart';
+import 'package:fruittag/pages/game.dart';
 import 'package:fruittag/pages/front.dart';
 import 'package:fruittag/pages/profile.dart';
 import 'package:fruittag/pages/explore.dart';
@@ -38,7 +38,7 @@ class _HomePageState extends State<HomePage> {
   final Screens = [
     FrontPage(),
     ExplorePage(),
-    FavouritePage(),
+    GamePage(),
     ProfilePage(),
   ];
   @override
@@ -46,7 +46,7 @@ class _HomePageState extends State<HomePage> {
     final widget_items = <Widget>[
       Icon(Icons.home, size: 30),
       Icon(Icons.explore, size: 30),
-      Icon(Icons.favorite, size: 30),
+      Icon(Icons.games_sharp, size: 30),
       Icon(Icons.person, size: 30),
     ];
     return Scaffold(
