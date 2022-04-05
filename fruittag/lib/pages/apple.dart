@@ -1,8 +1,6 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, avoid_unnecessary_containers
 
 import 'package:flutter/material.dart';
-import 'package:fruittag/main.dart';
-import 'package:fruittag/pages/explore.dart';
 import 'package:audioplayers/audioplayers.dart';
 
 class Applepage extends StatelessWidget {
