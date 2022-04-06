@@ -8,6 +8,7 @@ import 'package:fruittag/pages/game.dart';
 import 'package:fruittag/pages/front.dart';
 import 'package:fruittag/pages/profile.dart';
 import 'package:fruittag/pages/explore.dart';
+import 'package:page_transition/page_transition.dart';
 
 void main() {
   runApp(MaterialApp(
@@ -19,7 +20,11 @@ void main() {
           "assets/splashimage.png",
         ),
       ),
+      duration: 3000,
+      pageTransitionType: PageTransitionType.rightToLeftWithFade,
+      backgroundColor: Colors.teal,
       splashIconSize: 200,
+      splashTransition: SplashTransition.slideTransition,
       nextScreen: HomePage(),
     ),
   ));
