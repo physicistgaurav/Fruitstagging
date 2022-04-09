@@ -35,31 +35,32 @@ class _FrontPageState extends State<FrontPage> {
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         backgroundColor: Colors.grey[100],
-        body: SafeArea(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Image.asset(
-                "assets/newsplash.png",
-                height: 150,
-                width: 150,
-              ),
-              Spacer(),
-              image != null
-                  ? Image.file(
-                      image!,
-                      width: 100,
-                      height: 200,
-                    )
-                  : Image.asset(
-                      "assets/up.png",
-                      height: 160,
-                      width: 160,
-                    ),
-              const SizedBox(
-                height: 24,
-              ),
-              Text(
+        body: ListView(
+          scrollDirection: Axis.vertical,
+          // mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Image.asset(
+              "assets/newsplash.png",
+              height: 150,
+              width: 150,
+            ),
+            Spacer(),
+            image != null
+                ? Image.file(
+                    image!,
+                    width: 100,
+                    height: 200,
+                  )
+                : Image.asset(
+                    "assets/up.png",
+                    height: 160,
+                    width: 160,
+                  ),
+            const SizedBox(
+              height: 24,
+            ),
+            Center(
+              child: Text(
                 "Your Image",
                 style: TextStyle(
                   color: Colors.black,
@@ -68,42 +69,42 @@ class _FrontPageState extends State<FrontPage> {
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              SizedBox(
-                height: 10,
-              ),
-              GestureDetector(
-                onTap: () => pickImage(ImageSource.gallery),
-                child: Card(
-                  margin: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
-                  child: ListTile(
-                    leading: Icon(
-                      Icons.image_outlined,
-                      color: Colors.teal,
-                    ),
-                    title: Text("Pick Gallery"),
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            GestureDetector(
+              onTap: () => pickImage(ImageSource.gallery),
+              child: Card(
+                margin: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+                child: ListTile(
+                  leading: Icon(
+                    Icons.image_outlined,
+                    color: Colors.teal,
                   ),
+                  title: Text("Pick Gallery"),
                 ),
               ),
-              SizedBox(
-                height: 20,
-              ),
-              GestureDetector(
-                onTap: () {
-                  pickImage(ImageSource.camera);
-                },
-                child: Card(
-                  margin: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
-                  child: ListTile(
-                    leading: Icon(
-                      Icons.camera_alt_outlined,
-                      color: Colors.teal,
-                    ),
-                    title: Text("Pick Camera"),
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            GestureDetector(
+              onTap: () {
+                pickImage(ImageSource.camera);
+              },
+              child: Card(
+                margin: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+                child: ListTile(
+                  leading: Icon(
+                    Icons.camera_alt_outlined,
+                    color: Colors.teal,
                   ),
+                  title: Text("Pick Camera"),
                 ),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
