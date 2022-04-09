@@ -67,7 +67,7 @@ class ProfilePage extends StatelessWidget {
                 style: TextStyle(fontFamily: 'Poppins'),
               ),
               subtitle: Text(
-                'Google LLC is an American multinational technology company that specializes in Internet-related services and products, which include a search engine, online advertising, cloud computing, software, artificial intelligence, quantum computing, and hardware.',
+                'FruiTag is an mobile application designed to tag an image.This project was designed by Gaurav Rizal, Manish Baral, Prashanna Mani Paudel and Aditi Baral under the supervision of Mr. Satyandra Nath Lohani and Mr. Dhiraj Shrestha. Currently we provide 36 different fruits which you can explore.',
                 style: TextStyle(fontFamily: 'Poppins'),
               ),
             )
