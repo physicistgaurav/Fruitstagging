@@ -5,7 +5,7 @@ class Mailer {
   SmtpServer smtpServer = SmtpServer('smtp.gmail.com',
       name: 'Contacr from FruiTag',
       username: 'gr02442918@student.ku.edu.np',
-      password: 'Devilini@27');
+      password: 'enter email and pswd');
 
   Future<void> sendReceipt(
       String email, String name, String message, String subject) async {
