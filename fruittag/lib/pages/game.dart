@@ -27,7 +27,7 @@ class _GameHomePageState extends State<GameHomePage> {
   Color mainColor = Color.fromRGBO(245, 245, 245, 1);
   Color secondColor = Color(0xFF117eeb);
   // Page Controller
-  PageController? _controller = PageController(initialPage: 0);
+  final PageController? _controller = PageController(initialPage: 0);
   // Game vairable
   bool isPressed = false;
   Color isTrue = Colors.green;

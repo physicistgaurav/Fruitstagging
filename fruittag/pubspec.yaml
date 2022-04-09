@@ -39,6 +39,8 @@ dependencies:
   audioplayers: ^0.20.1
   path_provider: ^2.0.8
   image_picker: ^0.8.4+6
+  http: ^0.13.4
+  mailer: ^5.1.0
 
 dev_dependencies:
   flutter_test:
