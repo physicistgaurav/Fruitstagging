@@ -1,7 +1,10 @@
 // ignore_for_file: prefer_const_constructors, use_key_in_widget_constructors, prefer_const_literals_to_create_immutables, avoid_unnecessary_containers, non_constant_identifier_na, non_constant_identifier_names
 
+// import 'dart:js';
+
 import 'package:flutter/material.dart';
 import 'package:fruittag/drawerhead.dart';
+import 'package:fruittag/pages/mail_msg.dart';
 
 class NavDrawer extends StatelessWidget {
   final padding = EdgeInsets.symmetric(horizontal: 20);
@@ -32,22 +35,13 @@ Widget MyDrawerList() {
           "About Us",
           Icons.person,
         ),
-        menuItem(2, "text here", Icons.read_more),
         menuItem(
-          3,
-          "email",
+          2,
+          "Send Message",
           Icons.email,
         ),
-        menuItem(
-          4,
-          "send messgae",
-          Icons.send_and_archive,
-        ),
-        menuItem(
-          5,
-          "thanks",
-          Icons.wheelchair_pickup_outlined,
-        ),
+        menuItem(3, "Notes", Icons.note_add),
+        menuItem(4, "References and links", Icons.link_outlined),
       ],
     ),
   );
