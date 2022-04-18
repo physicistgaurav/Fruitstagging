@@ -2,6 +2,7 @@
 
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:fruittag/drawer.dart';
 import 'package:fruittag/pages/game.dart';
@@ -10,7 +11,9 @@ import 'package:fruittag/pages/profile.dart';
 import 'package:fruittag/pages/explore.dart';
 import 'package:page_transition/page_transition.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(MaterialApp(
     title: "Fruits-tag",
     debugShowCheckedModeBanner: false,
@@ -75,6 +78,7 @@ class _HomePageState extends State<HomePage> {
           index: index,
           onTap: (index) => setState(() => this.index = index),
           items: widget_items,
+          animationDuration: Duration(milliseconds: 500),
         ),
       ),
     );

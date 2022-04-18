@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "85783827345",
+    "project_id": "fruits--tagging",
+    "storage_bucket": "fruits--tagging.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:85783827345:android:b137a02d3804cc355ac030",
+        "android_client_info": {
+          "package_name": "com.example.fruittag"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "85783827345-sppa3jgd2l2tl60e60pf1q08mqcsi0re.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBu-1xGp2reiGBqS_7oISLnkUGImf_nYEI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "85783827345-sppa3jgd2l2tl60e60pf1q08mqcsi0re.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

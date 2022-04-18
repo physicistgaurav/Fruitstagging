@@ -4,8 +4,20 @@ import 'package:bulleted_list/bulleted_list.dart';
 import 'package:flutter/material.dart';
 import 'package:audioplayers/audioplayers.dart';
 
-class Applepage extends StatelessWidget {
-  const Applepage({Key? key}) : super(key: key);
+class FruitDetails{
+  String? name;
+  String? description;
+  int? calorie;
+  String? imageUrl;
+
+  FruitDetails({this.name, this.description, this.calorie, this.imageUrl});
+}
+
+class Fruitpage extends StatelessWidget {
+  const Fruitpage({Key? key, this.details}) : super(key: key);
+
+  final Map? details;
+  String capitalize(String s) => s[0].toUpperCase() + s.substring(1);
 
   @override
   Widget build(BuildContext context) {
@@ -26,9 +38,9 @@ class Applepage extends StatelessWidget {
                 height: 85,
               ),
               ClipRRect(
-                child: Image(
-                  image: AssetImage("assets/apple1.jpg"),
-                  height: 360,
+                child: Image.network(
+                  '${details?['imageUrl']}',
+                  height: 256,
                   fit: BoxFit.contain,
                   alignment: Alignment.topCenter,
                 ),
@@ -40,7 +52,7 @@ class Applepage extends StatelessWidget {
                 padding: const EdgeInsets.only(left: 5.0),
                 child: ListTile(
                   title: Text(
-                    "Apple",
+                    capitalize(details?['name']),
                     style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontFamily: 'Poppins',
@@ -77,7 +89,7 @@ class Applepage extends StatelessWidget {
                       width: 10,
                     ),
                     Text(
-                      "52 cal",
+                      '${details?['calorie']} cal',
                       style: TextStyle(
                           color: Colors.grey[600],
                           letterSpacing: 1,
@@ -123,7 +135,7 @@ class Applepage extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(left: 18.0),
                 child: Text(
-                  "About Apple",
+                  "About ${capitalize(details?['name'])}",
                   style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontFamily: 'Poppins',
@@ -137,7 +149,7 @@ class Applepage extends StatelessWidget {
               Padding(
                 padding: EdgeInsets.only(left: 18),
                 child: Text(
-                  "Apples are a fruit and one of the most popular foods in the world.Apples grow on trees. Each spring apple trees bloom or ‘set on blossoms’. Blossoms are flowers.Tucked inside the bottom of each blossom is the ovule. Inside the ovule are the seeds that will turn into an apple.For this to happen, though, bees have to pollinate the flowers so the seeds can be fertilized.Once this happens, the blossoms turn brown and fall to the ground and the apples begin to grow.",
+                  '${details?['description']}',
                   style: TextStyle(
                       color: Colors.grey[600],
                       fontFamily: 'Poppins',
