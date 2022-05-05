@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:fruittag/model/detector.dart';
 
 class FrontPage extends StatefulWidget {
   const FrontPage({Key? key}) : super(key: key);
@@ -14,6 +15,8 @@ class FrontPage extends StatefulWidget {
 
 class _FrontPageState extends State<FrontPage> {
   File? image;
+  Detector detector = Detector();
+  String classified = "Your Image";
 
   Future pickImage(ImageSource source) async {
     try {
@@ -21,6 +24,7 @@ class _FrontPageState extends State<FrontPage> {
       if (image == null) return;
 
       final imageTemporary = File(image.path);
+      classified = await detector.detectImage(image);
       setState(() {
         this.image = imageTemporary;
       });
@@ -61,7 +65,7 @@ class _FrontPageState extends State<FrontPage> {
             ),
             Center(
               child: Text(
-                "Your Image",
+                classified,
                 style: TextStyle(
                   color: Colors.black,
                   fontFamily: 'Raleway',
