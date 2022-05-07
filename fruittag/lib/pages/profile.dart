@@ -30,7 +30,7 @@ class ProfilePage extends StatelessWidget {
                     radius: 70,
                     backgroundColor: Colors.white,
                     backgroundImage: AssetImage(
-                      "assets/prof.jpg",
+                      "assets/splashimage.png",
                     ),
                   ),
                 ),
@@ -40,8 +40,8 @@ class ProfilePage extends StatelessWidget {
               height: 50,
             ),
             ListTile(
-              title: Center(child: Text("Gaurav")),
-              subtitle: Center(child: Text("Design Team")),
+              title: Center(child: Text("FruiTag")),
+              subtitle: Center(child: Text("Fruits Tagging App")),
             ),
             ElevatedButton.icon(
               onPressed: () {
@@ -68,7 +68,10 @@ class ProfilePage extends StatelessWidget {
               ),
               subtitle: Text(
                 'FruiTag is an mobile application designed to tag an image.This project was designed by Gaurav Rizal, Manish Baral, Prashanna Mani Paudel and Aditi Baral under the supervision of Mr. Satyandra Nath Lohani and Mr. Dhiraj Shrestha. Currently we provide 36 different fruits which you can explore.',
-                style: TextStyle(fontFamily: 'Poppins'),
+                style: TextStyle(
+                  fontFamily: 'Poppins',
+                ),
+                textAlign: TextAlign.justify,
               ),
             )
           ],

@@ -14,4 +14,13 @@ class DatabaseService {
     // print(allData);
     return allData;
   }
+
+  Future getFruit(name) async {
+    DocumentSnapshot snapshot = await fruitCollection.doc(name).get();
+    if (snapshot.exists){
+      // Object? data = snapshot.data();
+      return snapshot.data();
+    }
+    // return snapshot;
+  }
 }

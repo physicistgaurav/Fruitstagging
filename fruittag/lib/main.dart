@@ -41,7 +41,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  int index = 2;
+  int index = 0;
 
   final Screens = [
     FrontPage(),
@@ -49,20 +49,22 @@ class _HomePageState extends State<HomePage> {
     GamePage(),
     ProfilePage(),
   ];
+
   @override
   Widget build(BuildContext context) {
     final widget_items = <Widget>[
       Icon(Icons.home, size: 30),
       Icon(Icons.explore, size: 30),
-      Icon(Icons.games_sharp, size: 30),
+      Icon(Icons.gamepad_outlined, size: 30),
       Icon(Icons.person, size: 30),
     ];
+
     return Scaffold(
       backgroundColor: Colors.grey[100],
       drawer: NavDrawer(),
       appBar: AppBar(
-        backgroundColor: Colors.green[700],
-        title: Text("Fruits-tag"),
+        backgroundColor: Color.fromRGBO(14, 167, 129, 1),
+        title: (index != 0)? Text("Fruits Tag") : Text(""),
         centerTitle: true,
         elevation: 0,
       ),
@@ -71,14 +73,14 @@ class _HomePageState extends State<HomePage> {
         data: Theme.of(context)
             .copyWith(iconTheme: IconThemeData(color: Colors.white)),
         child: CurvedNavigationBar(
-          color: Colors.green,
-          backgroundColor: Colors.transparent,
-          buttonBackgroundColor: Colors.purple,
+          color: Color.fromRGBO(14, 167, 129, 1),
+          backgroundColor: (index == 0)? Color.fromRGBO(60, 230, 190, 1) : Colors.white10,
+          buttonBackgroundColor: Color.fromRGBO(14, 167, 129, 1),
           height: 60,
           index: index,
           onTap: (index) => setState(() => this.index = index),
           items: widget_items,
-          animationDuration: Duration(milliseconds: 500),
+          animationDuration: Duration(milliseconds: 450),
         ),
       ),
     );

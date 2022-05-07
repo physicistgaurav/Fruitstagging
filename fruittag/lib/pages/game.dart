@@ -112,7 +112,7 @@ class _GameHomePageState extends State<GameHomePage> {
                               },
                         child: Text(
                           questions[index].answer!.keys.toList()[i],
-                          style: TextStyle(color: Colors.black),
+                          style: TextStyle(color: Colors.white),
                         ),
                       ),
                     ),

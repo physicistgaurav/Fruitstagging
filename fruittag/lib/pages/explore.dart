@@ -8,6 +8,7 @@ import 'package:fruittag/services/firestore.dart';
 class ExplorePage extends StatelessWidget {
   const ExplorePage({Key? key}) : super(key: key);
 
+  String capitalize(String s) => s[0].toUpperCase() + s.substring(1);
   @override
   Widget build(BuildContext context) {
     // GestureDetector(
@@ -30,18 +31,35 @@ class ExplorePage extends StatelessWidget {
           return GridView.builder(
             itemCount: snapshot.data.length,
             gridDelegate:
-            SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
+            SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3),
             itemBuilder: (context, index){
               return InkWell(
                 onTap: (){
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => Fruitpage(details: snapshot.data[index],)));
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => FruitPage(details: snapshot.data[index],)));
                 },
-                child: Container(
-                  padding: EdgeInsets.all(25),
-                  child: Image.network(
-                      '${snapshot.data[index]['imageUrl']}',
-
-                  ),
+                child: Column(
+                  children: [
+                    Container(
+                      padding: EdgeInsets.all(0),
+                      margin: EdgeInsets.fromLTRB(0, 15, 0, 0),
+                      child: Image.network(
+                          '${snapshot.data[index]['imageUrl']}',
+                        // height: 60,
+                        width: 80,
+                        // height: 100,
+                      ),
+                    ),
+                    SizedBox(height: 5,),
+                    Text(
+                      capitalize(snapshot.data[index]['name']),
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontFamily: 'Poppins',
+                          fontSize: 10,
+                          color: Colors.blueGrey
+                      ),
+                    )
+                  ],
                 ),
               );
             },

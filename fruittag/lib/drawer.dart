@@ -4,7 +4,9 @@
 
 import 'package:flutter/material.dart';
 import 'package:fruittag/drawerhead.dart';
+import 'package:fruittag/pages/explore.dart';
 import 'package:fruittag/pages/mail_msg.dart';
+import 'package:fruittag/pages/profile.dart';
 
 class NavDrawer extends StatelessWidget {
   final padding = EdgeInsets.symmetric(horizontal: 20);
@@ -13,44 +15,52 @@ class NavDrawer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Drawer(
         child: SingleChildScrollView(
-      child: Container(
-        child: Column(
-          children: [
-            MyHeaderDrawer(),
-            MyDrawerList(),
-          ],
-        ),
-      ),
+          child: Container(
+            child: Column(
+              children: [
+                MyHeaderDrawer(),
+                MyDrawerList(context),
+              ],
+            ),
+          ),
     ));
   }
 }
 
-Widget MyDrawerList() {
+Widget MyDrawerList(BuildContext context) {
   return Container(
     padding: EdgeInsets.only(top: 15),
     child: Column(
       children: [
         menuItem(
+          context,
           1,
           "About Us",
           Icons.person,
         ),
         menuItem(
+          context,
           2,
           "Send Message",
           Icons.email,
         ),
-        menuItem(3, "Notes", Icons.note_add),
-        menuItem(4, "References and links", Icons.link_outlined),
+        menuItem(
+            context,
+            3,
+            "References and links",
+            Icons.link_outlined
+        ),
       ],
     ),
   );
 }
 
-Widget menuItem(int id, String title, IconData icon) {
+Widget menuItem(BuildContext context, int id, String title, IconData icon) {
   return Material(
     child: InkWell(
-      onTap: () {},
+      onTap: () {
+        // Navigator.push(context, MaterialPageRoute(builder: (context) => ExplorePage()));
+      },
       child: Padding(
         padding: EdgeInsets.all(15),
         child: Row(
