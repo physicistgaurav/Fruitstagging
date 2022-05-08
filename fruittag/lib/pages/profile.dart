@@ -1,8 +1,8 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
+import 'package:animated_button/animated_button.dart';
 import 'package:flutter/material.dart';
 import 'package:fruittag/pages/mail_msg.dart';
-import 'package:animated_button/animated_button.dart';
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({Key? key}) : super(key: key);
@@ -26,20 +26,10 @@ class ProfilePage extends StatelessWidget {
                     fit: BoxFit.cover,
                     image: AssetImage("assets/profbg.jpg"),
                   ),
-                  Positioned(
-                    bottom: -60,
-                    child: CircleAvatar(
-                      radius: 70,
-                      backgroundColor: Colors.white,
-                      backgroundImage: AssetImage(
-                        "assets/splashimage.png",
-                      ),
-                    ),
-                  ),
                 ],
               ),
               SizedBox(
-                height: 50,
+                height: 45,
               ),
               ListTile(
                 title: Center(
@@ -80,6 +70,40 @@ class ProfilePage extends StatelessWidget {
                     ],
                   ),
                 ),
+              ),
+              // ElevatedButton.icon(
+              //   onPressed: () {
+              //     Navigator.push(context,
+              //         MaterialPageRoute(builder: (context) => ContactPage()));
+              //   },
+              //   icon: Icon(
+              //     Icons.mail,
+              //     color: Colors.white,
+              //     size: 20,
+              //   ),
+              //   label: Text(
+              //     'Mail us',
+              //   ),
+              //   style: ElevatedButton.styleFrom(
+              //       shape: RoundedRectangleBorder(
+              //           borderRadius: BorderRadius.circular(8)),
+              //       primary: Color.fromRGBO(14, 167, 129, 1),
+              //       fixedSize: Size(120, 40)),
+              // ),
+              ListTile(
+                title: Center(
+                    child: Text(
+                  "FruiTag",
+                  style: TextStyle(
+                      fontFamily: 'Poppins', fontWeight: FontWeight.w800),
+                )),
+                subtitle: Center(
+                    child: Text(
+                  "Fruits Tagging App",
+                  style: TextStyle(
+                    fontFamily: 'Poppins',
+                  ),
+                )),
               ),
               // ElevatedButton.icon(
               //   onPressed: () {
