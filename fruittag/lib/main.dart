@@ -64,7 +64,18 @@ class _HomePageState extends State<HomePage> {
       drawer: NavDrawer(),
       appBar: AppBar(
         backgroundColor: Color.fromRGBO(14, 167, 129, 1),
-        title: (index != 0) ? Text("Fruits Tag") : Text(""),
+        title: (index != 0)? Text("Fruits Tag") : Text(""),
+        leading: Builder(
+          builder: (BuildContext context) {
+            return IconButton(
+              icon: const Icon(Icons.widgets_outlined),
+              onPressed: () {
+                Scaffold.of(context).openDrawer();
+              },
+              // tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
+            );
+          },
+        ),
         centerTitle: true,
         elevation: 0,
       ),
@@ -74,8 +85,7 @@ class _HomePageState extends State<HomePage> {
             .copyWith(iconTheme: IconThemeData(color: Colors.white)),
         child: CurvedNavigationBar(
           color: Color.fromRGBO(14, 167, 129, 1),
-          backgroundColor:
-              (index == 0) ? Color.fromRGBO(60, 230, 190, 1) : Colors.white10,
+          backgroundColor: (index == 0)? Color.fromRGBO(60, 230, 190, 1) : Colors.white10,
           buttonBackgroundColor: Color.fromRGBO(14, 167, 129, 1),
           height: 60,
           index: index,

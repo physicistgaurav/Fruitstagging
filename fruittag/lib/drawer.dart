@@ -9,7 +9,7 @@ import 'package:fruittag/pages/mail_msg.dart';
 import 'package:fruittag/pages/profile.dart';
 
 class NavDrawer extends StatelessWidget {
-  final padding = EdgeInsets.symmetric(horizontal: 20);
+  final padding = EdgeInsets.symmetric(horizontal: 10);
 
   @override
   Widget build(BuildContext context) {
@@ -56,34 +56,39 @@ Widget MyDrawerList(BuildContext context) {
 }
 
 Widget menuItem(BuildContext context, int id, String title, IconData icon) {
-  return Material(
-    child: InkWell(
-      onTap: () {
-        // Navigator.push(context, MaterialPageRoute(builder: (context) => ExplorePage()));
-      },
-      child: Padding(
-        padding: EdgeInsets.all(15),
-        child: Row(
-          children: [
-            Expanded(
-              child: Icon(
-                icon,
-                size: 20,
-                color: Colors.teal,
+  return InkWell(
+    onTap: () {
+      switch (id) {
+        case 1: Navigator.push(context, MaterialPageRoute(builder: (context) => ProfilePage()));
+        break;
+        case 2: Navigator.push(context, MaterialPageRoute(builder: (context) => ContactPage()));
+        break;
+        // case 3: Navigator.push(context, MaterialPageRoute(builder: (context) => ProfilePage()));
+      }
+      // Navigator.push(context, MaterialPageRoute(builder: (context) => ProfilePage()));
+    },
+    child: Padding(
+      padding: EdgeInsets.all(15),
+      child: Row(
+        children: [
+          Expanded(
+            child: Icon(
+              icon,
+              size: 20,
+              color: Colors.teal,
+            ),
+          ),
+          Expanded(
+            flex: 3,
+            child: Text(
+              title,
+              style: TextStyle(
+                color: Colors.black,
+                fontSize: 16,
               ),
             ),
-            Expanded(
-              flex: 3,
-              child: Text(
-                title,
-                style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 16,
-                ),
-              ),
-            ),
-          ],
-        ),
+          ),
+        ],
       ),
     ),
   );
