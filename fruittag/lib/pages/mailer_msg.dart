@@ -1,3 +1,6 @@
+// ignore_for_file: prefer_const_constructors
+
+import 'package:fruittag/pages/mail_msg.dart';
 import 'package:mailer/mailer.dart';
 import 'package:mailer/smtp_server.dart';
 
@@ -12,7 +15,7 @@ class Mailer {
     try {
       final equivalentMessage = Message()
         ..from = Address(email, name)
-        ..recipients.add(const Address('gauravrijal03@gmail.com'))
+        ..recipients.add(Address(email))
         ..subject = subject
         ..text = message;
       await send(equivalentMessage, smtpServer);
