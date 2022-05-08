@@ -55,7 +55,7 @@ class _HomePageState extends State<HomePage> {
     final widget_items = <Widget>[
       Icon(Icons.home, size: 30),
       Icon(Icons.explore, size: 30),
-      Icon(Icons.gamepad_outlined, size: 30),
+      Icon(Icons.videogame_asset_rounded, size: 30),
       Icon(Icons.person, size: 30),
     ];
 

@@ -100,6 +100,9 @@ flutter:
     - family: Ubuntu
       fonts:
         - asset: assets/Ubuntu-Regular.ttf
+    - family: GameIcon
+      fonts:
+        - asset: fonts/MyFlutterApp.ttf
   #       - asset: fonts/Schyler-Italic.ttf
   #         style: italic
   #   - family: Trajan Pro
