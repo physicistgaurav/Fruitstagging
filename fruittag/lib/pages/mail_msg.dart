@@ -67,6 +67,7 @@ class _ContactPageState extends State<ContactPage> {
                   controller: nameContoller,
                   decoration: const InputDecoration(
                       icon: const Icon(Icons.account_circle),
+                      border: OutlineInputBorder(),
                       hintText: 'Name',
                       labelText: 'Name'),
                 ),
@@ -77,6 +78,7 @@ class _ContactPageState extends State<ContactPage> {
                   controller: subjectController,
                   decoration: const InputDecoration(
                       icon: const Icon(Icons.subject_rounded),
+                      border: OutlineInputBorder(),
                       hintText: 'Subject',
                       labelText: 'Subject'),
                 ),
@@ -87,6 +89,7 @@ class _ContactPageState extends State<ContactPage> {
                   controller: emailController,
                   decoration: const InputDecoration(
                       icon: const Icon(Icons.email),
+                      border: OutlineInputBorder(),
                       hintText: 'Email',
                       labelText: 'Email'),
                 ),
@@ -95,8 +98,10 @@ class _ContactPageState extends State<ContactPage> {
                 ),
                 TextFormField(
                   controller: messageController,
+                  maxLines: 8,
                   decoration: const InputDecoration(
                       icon: const Icon(Icons.message),
+                      border: OutlineInputBorder(),
                       hintText: 'Message',
                       labelText: 'Message'),
                 ),
@@ -104,7 +109,6 @@ class _ContactPageState extends State<ContactPage> {
                   height: 40,
                 ),
                 ElevatedButton.icon(
-
                   onPressed: () {
                     Mailer().sendReceipt(
                         emailController.text,
@@ -116,8 +120,7 @@ class _ContactPageState extends State<ContactPage> {
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(8)),
                       primary: Color.fromRGBO(14, 167, 129, 1),
-                      fixedSize: Size(200, 50)
-                  ),
+                      fixedSize: Size(200, 50)),
                   icon: Icon(Icons.send),
                   label: Text(
                     'Send Message',

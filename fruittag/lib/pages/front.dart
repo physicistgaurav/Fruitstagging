@@ -25,12 +25,13 @@ class _FrontPageState extends State<FrontPage> {
   bool searching = false;
   bool urlOpen = false;
 
-  Future ffn(name) async{
+  Future ffn(name) async {
     final fruit = await DatabaseService().getFruit(name);
     return fruit;
   }
 
   Future pickImage(ImageSource source) async {
+    print("ABSC");
     try {
       final image = await ImagePicker().pickImage(source: source);
       if (image == null) return;
@@ -43,27 +44,33 @@ class _FrontPageState extends State<FrontPage> {
       });
 
       var fruitName = "";
-      for(int i=0; i<classified.length - 1; i++) {
+      for (int i = 0; i < classified.length; i++) {
         fruitName += classified[i];
       }
       print(fruitName);
-      var fruitDetail = details.where((element) => element['name'] == fruitName).toList();
+      var fruitDetail =
+          details.where((element) => element['name'] == fruitName).toList();
 
       setState(() {
         this.image = imageTemporary;
       });
       searching = true;
-      await Future.delayed(const Duration(milliseconds: 600), (){});
+      await Future.delayed(const Duration(milliseconds: 600), () {});
       setState(() {
         searching = false;
       });
-      Navigator.push(context, MaterialPageRoute(builder: (context) => FruitPage(details: fruitDetail[0],)));
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => FruitPage(
+                    details: fruitDetail[0],
+                  )));
     } on PlatformException catch (e) {
       print('failed to pick image: $e');
     }
   }
 
-  Future call()async{
+  Future call() async {
     final fruit = await DatabaseService().getFruits();
     setState(() {
       details = fruit;
@@ -80,21 +87,24 @@ class _FrontPageState extends State<FrontPage> {
     setState(() {
       searching = false;
     });
-    if (details.isEmpty){
+    if (details.isEmpty) {
       call();
     }
   }
 
-  Widget customInkWell(int id, String title, String path){
+  Widget customInkWell(int id, String title, String path) {
     return InkWell(
-      onTap: (){
-        switch(id){
-          case 1: pickImage(ImageSource.camera);
-          break;
-          case 2: pickImage(ImageSource.gallery);
-          break;
-          case 3: pickImage(ImageSource.gallery);
-          break;
+      onTap: () {
+        switch (id) {
+          case 1:
+            pickImage(ImageSource.camera);
+            break;
+          case 2:
+            pickImage(ImageSource.gallery);
+            break;
+          case 3:
+            pickImage(ImageSource.gallery);
+            break;
         }
       },
       child: Container(
@@ -107,16 +117,20 @@ class _FrontPageState extends State<FrontPage> {
             gradient: LinearGradient(
               begin: Alignment.centerRight,
               end: Alignment.centerLeft,
-              colors: (id == 3)? [
-                Color.fromRGBO(0, 224, 119, 1),
-                Color.fromRGBO(12, 170, 59, 1),
-              ] : (id == 2)? [
-                  Color.fromRGBO(245, 92, 189, 1),
-                  Color.fromRGBO(245, 70, 99, 1),
-                ] : [
-                  Color.fromRGBO(0, 217, 255, 1),
-                  Color.fromRGBO(0, 135, 224, 1),
-                ],
+              colors: (id == 3)
+                  ? [
+                      Color.fromRGBO(0, 224, 119, 1),
+                      Color.fromRGBO(12, 170, 59, 1),
+                    ]
+                  : (id == 2)
+                      ? [
+                          Color.fromRGBO(245, 92, 189, 1),
+                          Color.fromRGBO(245, 70, 99, 1),
+                        ]
+                      : [
+                          Color.fromRGBO(0, 217, 255, 1),
+                          Color.fromRGBO(0, 135, 224, 1),
+                        ],
             ),
             // border: Border.all(color: Colors.black),
             boxShadow: [
@@ -126,8 +140,7 @@ class _FrontPageState extends State<FrontPage> {
                 blurRadius: 4,
                 offset: Offset(-1, 1), // changes position of shadow
               ),
-            ]
-        ),
+            ]),
         child: Padding(
           padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 20),
           child: Row(
@@ -143,8 +156,7 @@ class _FrontPageState extends State<FrontPage> {
                         fontFamily: 'Poppins',
                         fontWeight: FontWeight.bold,
                         fontSize: 20,
-                        color: Colors.white
-                    ),
+                        color: Colors.white),
                   ),
                   Text(
                     "Scan Image from $title",
@@ -152,8 +164,7 @@ class _FrontPageState extends State<FrontPage> {
                         fontFamily: 'Poppins',
                         fontWeight: FontWeight.normal,
                         fontSize: 14,
-                        color: Colors.white
-                    ),
+                        color: Colors.white),
                   ),
                 ],
               ),
@@ -164,12 +175,11 @@ class _FrontPageState extends State<FrontPage> {
             ],
           ),
         ),
-
       ),
     );
   }
 
-  Widget urlBox(){
+  Widget urlBox() {
     return Center(
       child: FractionallySizedBox(
         widthFactor: 0.9,
@@ -193,21 +203,29 @@ class _FrontPageState extends State<FrontPage> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    IconButton(onPressed: (){}, icon: Icon(Icons.arrow_back, color: Colors.white,)),
+                    IconButton(
+                        onPressed: () {},
+                        icon: Icon(
+                          Icons.arrow_back,
+                          color: Colors.white,
+                        )),
                     Text(
                       'Image from URL',
                       style: TextStyle(
-                        color: Colors.white,
-                        fontFamily: 'Poppins',
-                        fontWeight: FontWeight.w800
-                      ),
+                          color: Colors.white,
+                          fontFamily: 'Poppins',
+                          fontWeight: FontWeight.w800),
                     ),
                     Text(''),
                   ],
                 ),
-                SizedBox(height: 20,),
+                SizedBox(
+                  height: 20,
+                ),
                 Text("URL: "),
-                SizedBox(height: 20,),
+                SizedBox(
+                  height: 20,
+                ),
                 TextField(
                   decoration: InputDecoration(
                     border: OutlineInputBorder(),
@@ -224,7 +242,6 @@ class _FrontPageState extends State<FrontPage> {
 
   @override
   Widget build(BuildContext context) {
-
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
@@ -256,11 +273,10 @@ class _FrontPageState extends State<FrontPage> {
                           Text(
                             'Know your',
                             style: TextStyle(
-                              fontFamily: 'Poppins',
-                              fontSize: 20,
-                              fontWeight: FontWeight.w800,
-                              color: Colors.white
-                            ),
+                                fontFamily: 'Poppins',
+                                fontSize: 20,
+                                fontWeight: FontWeight.w800,
+                                color: Colors.white),
                             textAlign: TextAlign.center,
                           ),
                           Text(
@@ -269,8 +285,7 @@ class _FrontPageState extends State<FrontPage> {
                                 fontFamily: 'Poppins',
                                 fontSize: 26,
                                 fontWeight: FontWeight.w800,
-                                color: Colors.white
-                            ),
+                                color: Colors.white),
                             textAlign: TextAlign.center,
                           ),
                           // Text(classified)
@@ -279,24 +294,34 @@ class _FrontPageState extends State<FrontPage> {
                     ),
                   ),
                 ),
-                (searching)? SizedBox(
-                  height: 180,
-                  child: Center(
-                    child: CircularProgressIndicator(color: Colors.white,),
-                  ),
-                ) : (urlOpen)? urlBox() : Padding(
-                  padding: const EdgeInsets.all(15),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      customInkWell(1, "Camera", "assets/camera.png"),
-                      SizedBox(height: 15,),
-                      customInkWell(2, "Gallery", "assets/image.png"),
-                      SizedBox(height: 15,),
-                      customInkWell(3, "Link", "assets/link.png"),
-                    ],
-                  ),
-                ),
+                (searching)
+                    ? SizedBox(
+                        height: 180,
+                        child: Center(
+                          child: CircularProgressIndicator(
+                            color: Colors.white,
+                          ),
+                        ),
+                      )
+                    : (urlOpen)
+                        ? urlBox()
+                        : Padding(
+                            padding: const EdgeInsets.all(15),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                customInkWell(1, "Camera", "assets/camera.png"),
+                                SizedBox(
+                                  height: 15,
+                                ),
+                                customInkWell(2, "Gallery", "assets/image.png"),
+                                SizedBox(
+                                  height: 15,
+                                ),
+                                customInkWell(3, "Link", "assets/link.png"),
+                              ],
+                            ),
+                          ),
               ],
             ),
           ),

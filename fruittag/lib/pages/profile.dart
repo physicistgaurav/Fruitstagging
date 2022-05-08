@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:fruittag/pages/mail_msg.dart';
+import 'package:animated_button/animated_button.dart';
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({Key? key}) : super(key: key);
@@ -41,44 +42,71 @@ class ProfilePage extends StatelessWidget {
                 height: 50,
               ),
               ListTile(
-                title: Center(child: Text(
-                    "FruiTag",
-                  style: TextStyle(
-                    fontFamily: 'Poppins',
-                    fontWeight: FontWeight.w800
-                  ),
+                title: Center(
+                    child: Text(
+                  "FruiTag",
+                  style: TextStyle(fontFamily: 'Poppins', fontSize: 16),
                 )),
-                subtitle: Center(child: Text(
-                    "Fruits Tagging App",
-                  style: TextStyle(
-                      fontFamily: 'Poppins',
-                  ),
+                subtitle: Center(
+                    child: Text(
+                  "Fruits Tagging App",
+                  style: TextStyle(fontFamily: 'Poppins', fontSize: 14),
                 )),
               ),
-              ElevatedButton.icon(
+              AnimatedButton(
                 onPressed: () {
                   Navigator.push(context,
                       MaterialPageRoute(builder: (context) => ContactPage()));
                 },
-                icon: Icon(
-                  Icons.mail,
-                  color: Colors.white,
-                  size: 20,
-                ),
-                label: Text(
-                  'Mail us',
-                ),
-                style: ElevatedButton.styleFrom(
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(8)),
-                  primary: Color.fromRGBO(14, 167, 129, 1),
-                  fixedSize: Size(120, 40)
+                shadowDegree: ShadowDegree.light,
+                width: 120,
+                height: 50,
+                color: Color.fromRGBO(14, 167, 129, 1),
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        "Mail us",
+                        style: TextStyle(
+                            fontSize: 22,
+                            color: Colors.white,
+                            fontWeight: FontWeight.w500),
+                      ),
+                      SizedBox(
+                        width: 8,
+                      ),
+                    ],
+                  ),
                 ),
               ),
+              // ElevatedButton.icon(
+              //   onPressed: () {
+              //     Navigator.push(context,
+              //         MaterialPageRoute(builder: (context) => ContactPage()));
+              //   },
+              //   icon: Icon(
+              //     Icons.mail,
+              //     color: Colors.white,
+              //     size: 20,
+              //   ),
+              //   label: Text(
+              //     'Mail us',
+              //   ),
+              //   style: ElevatedButton.styleFrom(
+              //       shape: RoundedRectangleBorder(
+              //           borderRadius: BorderRadius.circular(8)),
+              //       primary: Color.fromRGBO(14, 167, 129, 1),
+              //       fixedSize: Size(120, 40)),
+              // ),
               ListTile(
                 title: Text(
                   'About us',
-                  style: TextStyle(fontFamily: 'Poppins'),
+                  style: TextStyle(
+                      fontFamily: 'Poppins',
+                      fontWeight: FontWeight.bold,
+                      fontSize: 20),
                 ),
                 subtitle: Text(
                   'FruiTag is an mobile application designed to tag an image.This project was designed by Gaurav Rizal, Manish Baral, Prashanna Mani Paudel and Aditi Baral under the supervision of Mr. Satyandra Nath Lohani and Mr. Dhiraj Shrestha. Currently we provide 36 different fruits which you can explore.',

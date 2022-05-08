@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:fruittag/drawerhead.dart';
 import 'package:fruittag/pages/explore.dart';
 import 'package:fruittag/pages/mail_msg.dart';
+import 'package:fruittag/pages/profdrawer.dart';
 import 'package:fruittag/pages/profile.dart';
 
 class NavDrawer extends StatelessWidget {
@@ -15,14 +16,14 @@ class NavDrawer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Drawer(
         child: SingleChildScrollView(
-          child: Container(
-            child: Column(
-              children: [
-                MyHeaderDrawer(),
-                MyDrawerList(context),
-              ],
-            ),
-          ),
+      child: Container(
+        child: Column(
+          children: [
+            MyHeaderDrawer(),
+            MyDrawerList(context),
+          ],
+        ),
+      ),
     ));
   }
 }
@@ -44,12 +45,7 @@ Widget MyDrawerList(BuildContext context) {
           "Send Message",
           Icons.email,
         ),
-        menuItem(
-            context,
-            3,
-            "References and links",
-            Icons.link_outlined
-        ),
+        menuItem(context, 3, "References and links", Icons.link_outlined),
       ],
     ),
   );
@@ -59,10 +55,14 @@ Widget menuItem(BuildContext context, int id, String title, IconData icon) {
   return InkWell(
     onTap: () {
       switch (id) {
-        case 1: Navigator.push(context, MaterialPageRoute(builder: (context) => ProfilePage()));
-        break;
-        case 2: Navigator.push(context, MaterialPageRoute(builder: (context) => ContactPage()));
-        break;
+        case 1:
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => ProfilePagedrawer()));
+          break;
+        case 2:
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => ContactPage()));
+          break;
         // case 3: Navigator.push(context, MaterialPageRoute(builder: (context) => ProfilePage()));
       }
       // Navigator.push(context, MaterialPageRoute(builder: (context) => ProfilePage()));
