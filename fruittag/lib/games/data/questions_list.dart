@@ -27,15 +27,15 @@ List<QuestionModel> questions = [
       "I am brown on outside and yellow inside. I am big and prickly. I have big prickly leaves growing on top of me. What am I?  ",
       {
         "Kiwi": false,
-        "Avacado": false,
+        "Avocado": false,
         "Pineapple": true,
         "Guava": false,
       }),
   QuestionModel("I am yellow and medium size. I taste sour. What am I? ", {
-    "Pineapple": true,
+    "Pineapple": false,
     "Banana": false,
-    "Lemon": false,
-    "Avacado": false,
+    "Lemon": true,
+    "Avocado": false,
   }),
   QuestionModel(
       "I am brown on outside and green inside. I am hairy on outside. I can taste sweet or sour. What am I? ",
@@ -63,7 +63,7 @@ List<QuestionModel> questions = [
   QuestionModel(
       "I have a prickly, hard outer covering and am small in size with sweet flesh. What am I? ",
       {
-        "Avacado": false,
+        "Avocado": false,
         "Pear": false,
         "Lychee": true,
         "Mango": false,

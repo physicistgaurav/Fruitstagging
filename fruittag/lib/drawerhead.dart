@@ -13,7 +13,7 @@ class _MyHeaderDrawerState extends State<MyHeaderDrawer> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.green[700],
+      color: Color.fromRGBO(14, 167, 129, 1),
       width: double.infinity,
       height: 200,
       padding: EdgeInsets.only(top: 20),
@@ -31,12 +31,12 @@ class _MyHeaderDrawerState extends State<MyHeaderDrawer> {
           Text(
             "FruiTag",
             style: TextStyle(
-                color: Colors.white, fontSize: 20, fontFamily: 'RubikGlitch'),
+                color: Colors.white, fontSize: 20, fontFamily: 'Poppins', fontWeight: FontWeight.w800),
           ),
           Text(
-            "Tagafruit@gmail.com",
+            "tagafruit@gmail.com",
             style: TextStyle(
-                color: Colors.grey[200], fontSize: 14, fontFamily: 'yono'),
+                color: Colors.grey[200], fontSize: 12, fontFamily: 'Poppins'),
           ),
         ],
       ),

@@ -55,7 +55,7 @@ class _ContactPageState extends State<ContactPage> {
               Navigator.pop(context);
             },
           ),
-          backgroundColor: Colors.green,
+          backgroundColor: Color.fromRGBO(14, 167, 129, 1),
         ),
         body: Padding(
           padding: const EdgeInsets.fromLTRB(25, 40, 25, 0),
@@ -101,9 +101,10 @@ class _ContactPageState extends State<ContactPage> {
                       labelText: 'Message'),
                 ),
                 SizedBox(
-                  height: 30,
+                  height: 40,
                 ),
-                ElevatedButton(
+                ElevatedButton.icon(
+
                   onPressed: () {
                     Mailer().sendReceipt(
                         emailController.text,
@@ -111,9 +112,16 @@ class _ContactPageState extends State<ContactPage> {
                         messageController.text,
                         subjectController.text);
                   },
-                  child: Text(
-                    "Send Message",
-                    style: TextStyle(fontSize: 20),
+                  style: ElevatedButton.styleFrom(
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8)),
+                      primary: Color.fromRGBO(14, 167, 129, 1),
+                      fixedSize: Size(200, 50)
+                  ),
+                  icon: Icon(Icons.send),
+                  label: Text(
+                    'Send Message',
+                    style: TextStyle(fontSize: 18, fontFamily: 'Poppins'),
                   ),
                 ),
               ],

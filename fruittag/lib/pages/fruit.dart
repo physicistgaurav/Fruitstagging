@@ -40,7 +40,7 @@ class _FruitPageState extends State<FruitPage> {
       appBar: AppBar(
         centerTitle: true,
         title: Text("Details"),
-        backgroundColor: Colors.green,
+        backgroundColor: Color.fromRGBO(14, 167, 129, 1),
         elevation: 0,
       ),
       extendBodyBehindAppBar: true,
@@ -70,17 +70,16 @@ class _FruitPageState extends State<FruitPage> {
                       fontWeight: FontWeight.bold,
                       fontFamily: 'Poppins',
                       fontSize: 30,
-                      color: Colors.green),
+                      color: Color.fromRGBO(14, 167, 129, 1)
+                  ),
                 ),
                 trailing: GestureDetector(
                   onTap: () {
-                    // final player = AudioCache();
-                    // player.play("appvoice.mp3");
                     _speak(widget.details?['name']);
                   },
                   child: Icon(
                     Icons.volume_up_rounded,
-                    color: Colors.green,
+                    color: Color.fromRGBO(14, 167, 129, 1),
                     size: 30,
                   ),
                 ),
@@ -92,7 +91,7 @@ class _FruitPageState extends State<FruitPage> {
                     Text(
                       "Calorie:",
                       style: TextStyle(
-                          color: Colors.green,
+                          color: Color.fromRGBO(14, 167, 129, 1),
                           letterSpacing: 1,
                           fontWeight: FontWeight.bold,
                           fontFamily: 'Poppins',
@@ -122,7 +121,7 @@ class _FruitPageState extends State<FruitPage> {
                   style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontFamily: 'Poppins',
-                      color: Colors.green,
+                      color: Color.fromRGBO(14, 167, 129, 1),
                       fontSize: 20),
                 ),
               ),
