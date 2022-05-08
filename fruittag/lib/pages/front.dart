@@ -1,6 +1,8 @@
 // ignore_for_file: prefer_const_constructors, unused_import, avoid_unnecessary_containers, prefer_const_literals_to_create_immutables, avoid_print
 
 import 'dart:io';
+import 'dart:math';
+import 'package:http/http.dart' as http;
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -8,6 +10,7 @@ import 'package:fruittag/pages/fruit.dart';
 import 'package:fruittag/services/firestore.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:fruittag/model/detector.dart';
+import 'package:path_provider/path_provider.dart';
 
 class FrontPage extends StatefulWidget {
   const FrontPage({Key? key}) : super(key: key);
@@ -23,7 +26,9 @@ class _FrontPageState extends State<FrontPage> {
 
   List details = [];
   bool searching = false;
-  bool urlOpen = false;
+  bool urlOpen = true;
+
+  final urlController = TextEditingController();
 
   Future ffn(name) async{
     final fruit = await DatabaseService().getFruit(name);
@@ -63,6 +68,53 @@ class _FrontPageState extends State<FrontPage> {
     }
   }
 
+  Future urlToFile(String imageUrl) async {
+  // generate random number.
+      var rng = Random();
+  // get temporary directory of device.
+      Directory tempDir = await getTemporaryDirectory();
+  // get temporary path from temporary directory.
+      String tempPath = tempDir.path + (rng.nextInt(100)).toString() +'.png';
+  // create a new file in temporary path with random file name.
+      File file = File(tempPath);
+  // call http.get method and pass imageUrl into it to get response.
+      http.Response response = await http.get(Uri.parse(imageUrl));
+  // write bodyBytes received in response to file.
+      await file.writeAsBytes(response.bodyBytes);
+  // now return the file which is created with random name in
+  // temporary directory and image bytes from response is written to // that file.
+      return file;
+  }
+
+  Future pickImageUrl(String url) async{
+    XFile? result = await urlToFile(url);
+    if (result == null) return;
+
+    final imageTemporary = XFile(result.path);
+
+    final tempClassified = await detector.detectImage(imageTemporary);
+    setState(() {
+      classified = tempClassified.toString().replaceAll(" ", "");
+    });
+
+    var fruitName = "";
+    for(int i=0; i<classified.length - 1; i++) {
+      fruitName += classified[i];
+    }
+    print(fruitName);
+    var fruitDetail = details.where((element) => element['name'] == fruitName).toList();
+
+    // setState(() {
+    //   this.image = imageTemporary;
+    // });
+    searching = true;
+    await Future.delayed(const Duration(milliseconds: 600), (){});
+    setState(() {
+      searching = false;
+    });
+    Navigator.push(context, MaterialPageRoute(builder: (context) => FruitPage(details: fruitDetail[0],)));
+  }
+
   Future call()async{
     final fruit = await DatabaseService().getFruits();
     setState(() {
@@ -93,7 +145,9 @@ class _FrontPageState extends State<FrontPage> {
           break;
           case 2: pickImage(ImageSource.gallery);
           break;
-          case 3: pickImage(ImageSource.gallery);
+          case 3: setState(() {
+            urlOpen = true;
+          });
           break;
         }
       },
@@ -170,55 +224,94 @@ class _FrontPageState extends State<FrontPage> {
   }
 
   Widget urlBox(){
-    return Center(
-      child: FractionallySizedBox(
-        widthFactor: 0.9,
-        child: Container(
-          // height: 300,
-          width: 200,
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
-              colors: [
-                Color.fromRGBO(0, 224, 119, 1),
-                Color.fromRGBO(12, 170, 59, 1),
-              ],
-            ),
-          ),
-          child: Padding(
-            padding: const EdgeInsets.all(15.0),
-            child: Column(
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    IconButton(onPressed: (){}, icon: Icon(Icons.arrow_back, color: Colors.white,)),
-                    Text(
-                      'Image from URL',
-                      style: TextStyle(
+    return Column(
+      children: [
+        SizedBox(height: 25,),
+        FractionallySizedBox(
+          widthFactor: 0.9,
+          // heightFactor: 0.2,
+          child: Container(
+            color: Colors.white30,
+            // height: 300,
+            // width: 200,
+
+            // decoration: BoxDecoration(
+            //   gradient: LinearGradient(
+            //     begin: Alignment.topCenter,
+            //     end: Alignment.bottomCenter,
+            //     colors: [
+            //       Color.fromRGBO(0, 224, 119, 1),
+            //       Color.fromRGBO(12, 170, 59, 1),
+            //     ],
+            //   ),
+            // ),
+            child: Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: Column(
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      IconButton(onPressed: (){
+                        setState(() {
+                          urlOpen = false;
+                        });
+                      }, icon: Icon(Icons.arrow_back, color: Colors.white,)),
+                      Text(
+                        'Image from URL',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 16,
+                          fontFamily: 'Poppins',
+                          fontWeight: FontWeight.w800
+                        ),
+                      ),
+                      // Text(''),
+                    ],
+                  ),
+                  SizedBox(height: 20,),
+                  Text(
+                    "URL: ",
+                    style: TextStyle(
                         color: Colors.white,
                         fontFamily: 'Poppins',
                         fontWeight: FontWeight.w800
-                      ),
                     ),
-                    Text(''),
-                  ],
-                ),
-                SizedBox(height: 20,),
-                Text("URL: "),
-                SizedBox(height: 20,),
-                TextField(
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(),
-                    hintText: 'Enter a search term',
                   ),
-                ),
-              ],
+                  SizedBox(height: 10,),
+                  TextField(
+                    controller: urlController,
+                    style: TextStyle(color: Colors.white),
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(
+                        borderSide: const BorderSide(color: Colors.white),
+                      ),
+                      hintText: 'Image URL',
+                      hintStyle: TextStyle(color: Colors.white),
+
+                    ),
+                  ),
+                  SizedBox(height: 20,),
+                  ElevatedButton.icon(
+                    onPressed: (){
+                      pickImageUrl(urlController.text);
+                    },
+                    style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.all<Color>(
+                          Colors.teal)
+                    ),
+                    icon: Icon(Icons.search),
+                    label: Text(
+                      'Scan',
+                      style: TextStyle(fontFamily: 'Poppins'),
+                    ),
+                  )
+                ],
+              ),
             ),
           ),
         ),
-      ),
+      ],
     );
   }
 
@@ -228,6 +321,7 @@ class _FrontPageState extends State<FrontPage> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
+        resizeToAvoidBottomInset: false,
         backgroundColor: Color.fromRGBO(60, 230, 190, 1),
         body: SingleChildScrollView(
           scrollDirection: Axis.vertical,

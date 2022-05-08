@@ -26,14 +26,36 @@ class ProfilePage extends StatelessWidget {
                     fit: BoxFit.cover,
                     image: AssetImage("assets/profbg.jpg"),
                   ),
+                  Positioned(
+                    bottom: -60,
+                    child: CircleAvatar(
+                      backgroundColor: Colors.white,
+                      radius: 60,
+                      // width: 150,
+                      // height: MediaQuery.of(context).size.height / 2.7,
+                      // fit: BoxFit.cover,
+                      child: Image.asset("assets/splashimage.png"),
+                    ),
+                  ),
                 ],
               ),
               SizedBox(
-                height: 45,
+                height: 60,
               ),
               ListTile(
-                title: Center(child: Text("FruiTag")),
-                subtitle: Center(child: Text("Fruits Tagging App")),
+                title: Center(
+                    child: Text(
+                      "FruiTag",
+                      style: TextStyle(
+                          fontFamily: 'Poppins', fontWeight: FontWeight.w800),
+                    )),
+                subtitle: Center(
+                    child: Text(
+                      "Fruits Tagging App",
+                      style: TextStyle(
+                        fontFamily: 'Poppins',
+                      ),
+                    )),
               ),
               AnimatedButton(
                 onPressed: () {
@@ -52,7 +74,7 @@ class ProfilePage extends StatelessWidget {
                       Text(
                         "Mail us",
                         style: TextStyle(
-                            fontSize: 22,
+                            fontSize: 18,
                             color: Colors.white,
                             fontWeight: FontWeight.w500),
                       ),
@@ -62,21 +84,6 @@ class ProfilePage extends StatelessWidget {
                     ],
                   ),
                 ),
-              ),
-              ListTile(
-                title: Center(
-                    child: Text(
-                  "FruiTag",
-                  style: TextStyle(
-                      fontFamily: 'Poppins', fontWeight: FontWeight.w800),
-                )),
-                subtitle: Center(
-                    child: Text(
-                  "Fruits Tagging App",
-                  style: TextStyle(
-                    fontFamily: 'Poppins',
-                  ),
-                )),
               ),
               // ElevatedButton.icon(
               //   onPressed: () {
