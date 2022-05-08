@@ -11,34 +11,10 @@ class ContactPage extends StatefulWidget {
   State<ContactPage> createState() => _ContactPageState();
 }
 
-final nameContoller = TextEditingController();
+final nameController = TextEditingController();
 final subjectController = TextEditingController();
 final emailController = TextEditingController();
 final messageController = TextEditingController();
-
-// Future sendEmail() async {
-//   final url = Uri.parse("https://api.emailjs.com/api/v1.0/email/send");
-//   const serviceId = "service_q081tc3";
-//   const templateId = "template_8fovfxp";
-//   const userId = "o0-kQ2z897tgFKWr9";
-//   final response = await http.post(url,
-//       headers: {
-//         'origin': 'http://localhost',
-//         'Content-Type': 'application/json'
-//       },
-//       body: json.encode({
-//         "service-id": serviceId,
-//         "template_id": templateId,
-//         "user_id": userId,
-//         "template_params": {
-//           "name": nameContoller.text,
-//           "subject": subjectController.text,
-//           "message": messageController.text,
-//           "user_email": emailController.text
-//         }
-//       }));
-//   return response.statusCode;
-// }
 
 class _ContactPageState extends State<ContactPage> {
   @override
@@ -64,9 +40,10 @@ class _ContactPageState extends State<ContactPage> {
                 child: Column(
               children: [
                 TextFormField(
-                  controller: nameContoller,
+                  controller: nameController,
                   decoration: const InputDecoration(
                       icon: const Icon(Icons.account_circle),
+                      border: OutlineInputBorder(),
                       hintText: 'Name',
                       labelText: 'Name'),
                 ),
@@ -77,6 +54,7 @@ class _ContactPageState extends State<ContactPage> {
                   controller: subjectController,
                   decoration: const InputDecoration(
                       icon: const Icon(Icons.subject_rounded),
+                      border: OutlineInputBorder(),
                       hintText: 'Subject',
                       labelText: 'Subject'),
                 ),
@@ -87,6 +65,7 @@ class _ContactPageState extends State<ContactPage> {
                   controller: emailController,
                   decoration: const InputDecoration(
                       icon: const Icon(Icons.email),
+                      border: OutlineInputBorder(),
                       hintText: 'Email',
                       labelText: 'Email'),
                 ),
@@ -95,8 +74,10 @@ class _ContactPageState extends State<ContactPage> {
                 ),
                 TextFormField(
                   controller: messageController,
+                  maxLines: 6,
                   decoration: const InputDecoration(
                       icon: const Icon(Icons.message),
+                      border: OutlineInputBorder(),
                       hintText: 'Message',
                       labelText: 'Message'),
                 ),
@@ -104,20 +85,22 @@ class _ContactPageState extends State<ContactPage> {
                   height: 40,
                 ),
                 ElevatedButton.icon(
-
                   onPressed: () {
                     Mailer().sendReceipt(
                         emailController.text,
-                        nameContoller.text,
+                        nameController.text,
                         messageController.text,
                         subjectController.text);
+                    emailController.text = "";
+                    nameController.text = "";
+                    messageController.text = "";
+                    subjectController.text = "";
                   },
                   style: ElevatedButton.styleFrom(
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(8)),
                       primary: Color.fromRGBO(14, 167, 129, 1),
-                      fixedSize: Size(200, 50)
-                  ),
+                      fixedSize: Size(200, 50)),
                   icon: Icon(Icons.send),
                   label: Text(
                     'Send Message',

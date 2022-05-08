@@ -3,9 +3,9 @@ import 'package:mailer/smtp_server.dart';
 
 class Mailer {
   SmtpServer smtpServer = SmtpServer('smtp.gmail.com',
-      name: 'Contacr from FruiTag',
+      name: 'Contact from FruiTag',
       username: 'gr02442918@student.ku.edu.np',
-      password: 'enter email and pswd');
+      password: 'Devilini@27');
 
   Future<void> sendReceipt(
       String email, String name, String message, String subject) async {

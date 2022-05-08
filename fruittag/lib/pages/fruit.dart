@@ -4,8 +4,9 @@ import 'package:bulleted_list/bulleted_list.dart';
 import 'package:flutter/material.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter_tts/flutter_tts.dart';
+import 'package:fruittag/pages/mail_msg.dart';
 
-class FruitDetails{
+class FruitDetails {
   String? name;
   String? description;
   int? calorie;
@@ -39,7 +40,7 @@ class _FruitPageState extends State<FruitPage> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text("Details"),
+        title: Text('${widget.details?['name']}'),
         backgroundColor: Color.fromRGBO(14, 167, 129, 1),
         elevation: 0,
       ),
@@ -70,8 +71,7 @@ class _FruitPageState extends State<FruitPage> {
                       fontWeight: FontWeight.bold,
                       fontFamily: 'Poppins',
                       fontSize: 30,
-                      color: Color.fromRGBO(14, 167, 129, 1)
-                  ),
+                      color: Color.fromRGBO(14, 167, 129, 1)),
                 ),
                 trailing: GestureDetector(
                   onTap: () {

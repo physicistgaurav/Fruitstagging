@@ -22,16 +22,23 @@ class _MyHeaderDrawerState extends State<MyHeaderDrawer> {
         children: [
           Container(
             margin: EdgeInsets.only(bottom: 10),
-            height: 70,
+            height: 80,
             decoration: BoxDecoration(
               shape: BoxShape.circle,
-              image: DecorationImage(image: AssetImage("assets/newsplash.png")),
+              image: DecorationImage(
+                image: AssetImage(
+                  "assets/newsplash.png",
+                ),
+              ),
             ),
           ),
           Text(
             "FruiTag",
             style: TextStyle(
-                color: Colors.white, fontSize: 20, fontFamily: 'Poppins', fontWeight: FontWeight.w800),
+                color: Colors.white,
+                fontSize: 20,
+                fontFamily: 'Poppins',
+                fontWeight: FontWeight.w800),
           ),
           Text(
             "tagafruit@gmail.com",

@@ -25,14 +25,14 @@ class GameHomePage extends StatefulWidget {
 
 class _GameHomePageState extends State<GameHomePage> {
   Color mainColor = Color.fromRGBO(245, 245, 245, 1);
-  Color secondColor = Color(0xFF117eeb);
+  Color secondColor = Color.fromRGBO(14, 167, 129, 1);
   // Page Controller
   final PageController? _controller = PageController(initialPage: 0);
   // Game vairable
   bool isPressed = false;
   Color isTrue = Colors.green;
   Color isWrong = Colors.red;
-  Color btnColor = Color(0xFF117eeb);
+  Color btnColor = Color.fromRGBO(14, 167, 129, 1);
   int score = 0;
 
   @override
@@ -63,7 +63,7 @@ class _GameHomePageState extends State<GameHomePage> {
                       style: const TextStyle(
                           color: Colors.black,
                           fontWeight: FontWeight.w300,
-                          fontSize: 28),
+                          fontSize: 26),
                     ),
                   ),
                   const Divider(
@@ -77,7 +77,7 @@ class _GameHomePageState extends State<GameHomePage> {
                   // Questions
                   Text(
                     questions[index].question!,
-                    style: const TextStyle(color: Colors.black, fontSize: 28),
+                    style: const TextStyle(color: Colors.black, fontSize: 26),
                   ),
                   SizedBox(
                     height: 35,
@@ -112,7 +112,7 @@ class _GameHomePageState extends State<GameHomePage> {
                               },
                         child: Text(
                           questions[index].answer!.keys.toList()[i],
-                          style: TextStyle(color: Colors.white),
+                          style: TextStyle(color: Colors.white, fontSize: 16),
                         ),
                       ),
                     ),

@@ -3,11 +3,14 @@
 import 'dart:io';
 import 'dart:math';
 import 'package:http/http.dart' as http;
+import 'package:path/path.dart' as path;
+import 'package:path_provider/path_provider.dart' as path_provider;
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fruittag/pages/fruit.dart';
 import 'package:fruittag/services/firestore.dart';
+import 'package:image_downloader/image_downloader.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:fruittag/model/detector.dart';
 import 'package:path_provider/path_provider.dart';
@@ -26,7 +29,11 @@ class _FrontPageState extends State<FrontPage> {
 
   List details = [];
   bool searching = false;
-  bool urlOpen = true;
+  bool urlOpen = false;
+  bool complete = false;
+
+  String tempPath = '';
+
 
   final urlController = TextEditingController();
 
@@ -69,29 +76,37 @@ class _FrontPageState extends State<FrontPage> {
   }
 
   Future urlToFile(String imageUrl) async {
-  // generate random number.
-      var rng = Random();
-  // get temporary directory of device.
-      Directory tempDir = await getTemporaryDirectory();
-  // get temporary path from temporary directory.
-      String tempPath = tempDir.path + (rng.nextInt(100)).toString() +'.png';
-  // create a new file in temporary path with random file name.
-      File file = File(tempPath);
-  // call http.get method and pass imageUrl into it to get response.
-      http.Response response = await http.get(Uri.parse(imageUrl));
-  // write bodyBytes received in response to file.
-      await file.writeAsBytes(response.bodyBytes);
-  // now return the file which is created with random name in
-  // temporary directory and image bytes from response is written to // that file.
-      return file;
+    print('Rls is:' + imageUrl);
+    final response = await http.get(Uri.parse(imageUrl));
+
+    // Get the image name
+    final imageName = path.basename(imageUrl);
+    // Get the document directory path
+    final appDir = await path_provider.getApplicationDocumentsDirectory();
+
+    // This is the saved image path
+    // You can use it to display the saved image later
+    final localPath = path.join(appDir.path, imageName);
+
+    // Downloading
+    final imageFile = File(localPath);
+    await imageFile.writeAsBytes(response.bodyBytes);
+    setState(() {
+      complete = true;
+      tempPath = localPath;
+    });
+    return imageFile;
   }
 
   Future pickImageUrl(String url) async{
-    XFile? result = await urlToFile(url);
+    setState(() {
+      complete = true;
+    });
+    final result = await urlToFile(url);
     if (result == null) return;
 
     final imageTemporary = XFile(result.path);
-
+    print(imageTemporary);
     final tempClassified = await detector.detectImage(imageTemporary);
     setState(() {
       classified = tempClassified.toString().replaceAll(" ", "");
@@ -100,6 +115,7 @@ class _FrontPageState extends State<FrontPage> {
     var fruitName = "";
     for(int i=0; i<classified.length - 1; i++) {
       fruitName += classified[i];
+      print(classified[i]);
     }
     print(fruitName);
     var fruitDetail = details.where((element) => element['name'] == fruitName).toList();
@@ -107,10 +123,9 @@ class _FrontPageState extends State<FrontPage> {
     // setState(() {
     //   this.image = imageTemporary;
     // });
-    searching = true;
     await Future.delayed(const Duration(milliseconds: 600), (){});
     setState(() {
-      searching = false;
+      complete = false;
     });
     Navigator.push(context, MaterialPageRoute(builder: (context) => FruitPage(details: fruitDetail[0],)));
   }
@@ -291,6 +306,9 @@ class _FrontPageState extends State<FrontPage> {
 
                     ),
                   ),
+                  SizedBox(height: 20,),
+                  // Image.file(File(tempPath)),
+                  (complete)? CircularProgressIndicator() : Container(),
                   SizedBox(height: 20,),
                   ElevatedButton.icon(
                     onPressed: (){

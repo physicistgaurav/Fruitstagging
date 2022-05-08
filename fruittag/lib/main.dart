@@ -55,7 +55,7 @@ class _HomePageState extends State<HomePage> {
     final widget_items = <Widget>[
       Icon(Icons.home, size: 30),
       Icon(Icons.explore, size: 30),
-      Icon(Icons.gamepad_outlined, size: 30),
+      Icon(Icons.videogame_asset_rounded, size: 30),
       Icon(Icons.person, size: 30),
     ];
 
@@ -64,7 +64,7 @@ class _HomePageState extends State<HomePage> {
       drawer: NavDrawer(),
       appBar: AppBar(
         backgroundColor: Color.fromRGBO(14, 167, 129, 1),
-        title: (index != 0)? Text("Fruits Tag") : Text(""),
+        title: (index != 0) ? Text("Fruits Tag") : Text(""),
         leading: Builder(
           builder: (BuildContext context) {
             return IconButton(
@@ -85,7 +85,8 @@ class _HomePageState extends State<HomePage> {
             .copyWith(iconTheme: IconThemeData(color: Colors.white)),
         child: CurvedNavigationBar(
           color: Color.fromRGBO(14, 167, 129, 1),
-          backgroundColor: (index == 0)? Color.fromRGBO(60, 230, 190, 1) : Colors.white10,
+          backgroundColor:
+              (index == 0) ? Color.fromRGBO(60, 230, 190, 1) : Colors.white10,
           buttonBackgroundColor: Color.fromRGBO(14, 167, 129, 1),
           height: 60,
           index: index,
