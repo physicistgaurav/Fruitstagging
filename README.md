@@ -3,11 +3,11 @@ FruitTag is a mobile application that identifies certain fruits and vegetables w
 Allows user to input image either from camera or gallery or Image url and uses machine learning model to identify the fruits.For the moment we have 36 data
 sets through which we provide brief information about the scanned/ tagged fruits. It also Contains quiz for user to test their knowledge of fruits.
 
-TEAM
-ADITI BARAL             https://github.com/AditiBaral
-MANISH BARAL            https://github.com/K-adu
-PRASHANNA MANI PAUDEL   https://github.com/PMP56
-GAURAV RIZAL            https://github.com/physicistgaurav
+TEAM  <br/>
+ADITI BARAL             https://github.com/AditiBaral           <br/>
+MANISH BARAL            https://github.com/K-adu                <br/>
+PRASHANNA MANI PAUDEL   https://github.com/PMP56                <br/>
+GAURAV RIZAL            https://github.com/physicistgaurav      <br/>
 
 HOME PAGE <br/>
 ![](images/homee.png)
